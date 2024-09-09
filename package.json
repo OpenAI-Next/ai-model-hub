@@ -1,7 +1,11 @@
 {
   "name": "ai-model-hub",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "provide latest AI model information",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenAI-Next/ai-model-hub.git"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "kadxy",
