@@ -1,0 +1,29 @@
+{
+  "name": "ai-model-hub",
+  "version": "1.0.0",
+  "description": "provide latest ai model information",
+  "main": "dist/index.js",
+  "author": "kadxy",
+  "licenses": [
+    {
+      "license": "CC-BY-NC-ND-4.0"
+    }
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "jest --verbose"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.5.4",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.5.4"
+  },
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ]
+}
