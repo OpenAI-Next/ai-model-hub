@@ -1,1 +1,0 @@
-export { modelRepository } from './ModelRepository';

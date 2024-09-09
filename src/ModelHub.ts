@@ -1,8 +1,8 @@
-import ModelList from '../model.json';
+import File from '../model.json';
 import {Model, ProviderInfo} from "./types/model";
 
-export class ModelRepository {
-    private readonly providerInfoList: ProviderInfo[];
+export class ModelHub {
+    providerInfoList: ProviderInfo[];
 
     constructor(model: ProviderInfo[]) {
         this.providerInfoList = model;
@@ -94,4 +94,4 @@ export class ModelRepository {
 
 }
 
-export const modelRepository = new ModelRepository(ModelList);
+export const modelHub = new ModelHub(File as ProviderInfo[]);

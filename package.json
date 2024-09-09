@@ -1,8 +1,9 @@
 {
   "name": "ai-model-hub",
-  "version": "1.0.0",
-  "description": "provide latest ai model information",
+  "version": "1.1.0",
+  "description": "provide latest AI model information",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "kadxy",
   "licenses": [
     {
@@ -10,9 +11,12 @@
     }
   ],
   "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build",
-    "test": "jest --verbose"
+    "build": "npm run remove && tsc",
+    "remove": "rm -rf dist",
+    "prepare": "npm run build && npm run copy-json",
+    "copy-json": "cp model.json dist/",
+    "test": "jest --verbose",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "devDependencies": {
@@ -22,8 +26,8 @@
     "ts-jest": "^29.2.5",
     "typescript": "^5.5.4"
   },
-  "types": "dist/index.d.ts",
   "files": [
-    "dist/**/*"
+    "dist",
+    "model.json"
   ]
 }
