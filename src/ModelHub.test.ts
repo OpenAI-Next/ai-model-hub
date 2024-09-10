@@ -1,4 +1,3 @@
-import File from '../model.json';
 import {modelHub} from "./index";
 
 describe('modelHub', () => {
