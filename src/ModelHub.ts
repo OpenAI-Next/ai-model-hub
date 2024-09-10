@@ -11,7 +11,7 @@ export class ModelHub {
     /**
      * 获取所有的 provider 信息
      */
-    getModelList(): ProviderInfo[] {
+    getAll(): ProviderInfo[] {
         return this.providerInfoList;
     }
 
@@ -32,7 +32,7 @@ export class ModelHub {
     }
 
     /**
-     * 获取所有的 model 名称，按 provider 分组
+     * 获取所有的 model 名称，并按 provider 分组
      */
     getAllModelNamesGroupByProvider(): { [provider: string]: string[] } {
         return this.providerInfoList.reduce((acc, providerInfo) => {
@@ -73,7 +73,7 @@ export class ModelHub {
     }
 
     /**
-     * 根据关键字查找模型名称
+     * 根据关键字查找模型名称，不区分大小写
      * @param keyword - 要查找的关键字
      * @returns 包含关键字的模型名称列表
      */

@@ -3,8 +3,8 @@ import {modelHub} from "./index";
 
 describe('modelHub', () => {
 
-    test('getModelList returns correct model list', () => {
-        const list = modelHub.getModelList();
+    test('getAll returns correct model list', () => {
+        const list = modelHub.getAll();
         console.log('Model list:', list);
         expect(list).toBeDefined();
         expect(list.length).toBeGreaterThan(0);
