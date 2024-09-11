@@ -1,6 +1,36 @@
-import {modelHub} from "./index";
+import {modelData, modelHub, ProviderInfo} from "./index";
 
 describe('modelHub', () => {
+
+    describe('modelHub', () => {
+        // 类型守卫函数：检查对象是否符合 ProviderInfo 接口定义
+        function isProviderInfo(obj: any): obj is ProviderInfo {
+            return (
+                typeof obj.provider === 'string' &&
+                typeof obj.id === 'number' &&
+                typeof obj.logo === 'object' &&
+                typeof obj.website === 'object' &&
+                typeof obj.website.home === 'string' &&
+                typeof obj.website.docs === 'string' &&
+                typeof obj.website.price === 'string' &&
+                Array.isArray(obj.models_list)
+            );
+        }
+
+        // 测试函数
+        test('Json file type is correct', () => {
+            expect(modelData).toBeDefined();
+
+            // 检查是否是数组
+            expect(Array.isArray(modelData)).toBe(true);
+
+            // 遍历数组，检查每个元素是否符合 ProviderInfo 类型
+            modelData.forEach(item => {
+                expect(isProviderInfo(item)).toBe(true);
+            });
+        });
+    });
+
 
     test('getAll returns correct model list', () => {
         const list = modelHub.getAll();

@@ -2,7 +2,8 @@ import File from '../model.json';
 
 export interface ProviderInfo {
     provider: string;
-    logo: string;
+    id: number;
+    logo: Logo;
     website: {
         home: string;
         docs: string;
@@ -10,6 +11,12 @@ export interface ProviderInfo {
     };
     models_list: Model[];
 }
+
+// export interface ModelSeries {
+//     name: string;
+//     logo: Logo;
+//     models: Model[];
+// }
 
 export interface Model {
     name: string;
@@ -22,6 +29,20 @@ export interface Model {
     description: string;
     info: ModelInfo;
     shutdown_time: number | null;
+}
+
+export interface Logo {
+    icon?: {
+        black_white?: string;
+        color?: string;
+    };
+    brand?: {
+        black_white?: string;
+        color?: string;
+    };
+    text?: {
+        [key: string]: string;
+    };
 }
 
 export interface ModelInfo {
@@ -39,33 +60,32 @@ export interface ModelInfo {
     training_data: number | null;
 }
 
-
 export class ModelHub {
-    providerInfoList: ProviderInfo[];
+    modelProviderInfoList: ProviderInfo[];
 
     constructor(model: ProviderInfo[]) {
-        this.providerInfoList = model;
+        this.modelProviderInfoList = model;
     }
 
     /**
      * 获取所有的 provider 信息
      */
     getAll(): ProviderInfo[] {
-        return this.providerInfoList;
+        return this.modelProviderInfoList;
     }
 
     /**
      * 获取所有的 provider 名称
      */
     getAllProviderNames(): string[] {
-        return this.providerInfoList.map(providerInfos => providerInfos.provider);
+        return this.modelProviderInfoList.map(providerInfos => providerInfos.provider);
     }
 
     /**
      * 获取所有的 model 名称
      */
     getAllModelNames(): string[] {
-        return this.providerInfoList.reduce((acc, providerInfo) => {
+        return this.modelProviderInfoList.reduce((acc, providerInfo) => {
             return acc.concat(providerInfo.models_list.map(model => model.name));
         }, [] as string[]);
     }
@@ -74,7 +94,7 @@ export class ModelHub {
      * 获取所有的 model 名称，并按 provider 分组
      */
     getAllModelNamesGroupByProvider(): { [provider: string]: string[] } {
-        return this.providerInfoList.reduce((acc, providerInfo) => {
+        return this.modelProviderInfoList.reduce((acc, providerInfo) => {
             acc[providerInfo.provider] = providerInfo.models_list.map(model => model.name);
             return acc;
         }, {} as { [provider: string]: string[] });
@@ -84,7 +104,7 @@ export class ModelHub {
      * 获取指定 provider 的信息，不区分大小写
      */
     getProviderInfo(provider: string): ProviderInfo | undefined {
-        return this.providerInfoList.find(providerInfos => providerInfos.provider.toLowerCase() === provider.toLowerCase());
+        return this.modelProviderInfoList.find(providerInfos => providerInfos.provider.toLowerCase() === provider.toLowerCase());
     }
 
     /**
@@ -92,7 +112,7 @@ export class ModelHub {
      * @param provider
      */
     getAllModelNamesByProvider(provider: string): string[] {
-        return this.providerInfoList.find(providerInfos => providerInfos.provider.toLowerCase() === provider.toLowerCase())?.models_list.map(model => model.name) || [];
+        return this.modelProviderInfoList.find(providerInfos => providerInfos.provider.toLowerCase() === provider.toLowerCase())?.models_list.map(model => model.name) || [];
     }
 
     /**
@@ -100,7 +120,7 @@ export class ModelHub {
      * @param modelName
      */
     getModelInfo(modelName: string): Model | undefined {
-        return this.providerInfoList.map(providerInfos => providerInfos.models_list.find(model => model.name === modelName)).find(model => model !== undefined);
+        return this.modelProviderInfoList.map(providerInfos => providerInfos.models_list.find(model => model.name === modelName)).find(model => model !== undefined);
     }
 
     /**
@@ -108,7 +128,7 @@ export class ModelHub {
      * @param modelName
      */
     getModelPrice(modelName: string): Model['price'] | undefined {
-        return this.providerInfoList.map(providerInfos => providerInfos.models_list.find(model => model.name === modelName)?.price).find(price => price !== undefined);
+        return this.modelProviderInfoList.map(providerInfos => providerInfos.models_list.find(model => model.name === modelName)?.price).find(price => price !== undefined);
     }
 
     /**
@@ -123,7 +143,7 @@ export class ModelHub {
 
         const lowerCaseKeyword = keyword.toLowerCase();
 
-        return this.providerInfoList.reduce((acc, providerInfo) => {
+        return this.modelProviderInfoList.reduce((acc, providerInfo) => {
             const matchingModels = providerInfo.models_list
                 .filter(model => model.name.toLowerCase().includes(lowerCaseKeyword))
                 .map(model => model.name);
@@ -133,4 +153,4 @@ export class ModelHub {
 
 }
 
-export const modelHub = new ModelHub(File as ProviderInfo[]);
+export const modelHub = new ModelHub(File);
