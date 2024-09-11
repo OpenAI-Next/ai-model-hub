@@ -1,6 +1,6 @@
 {
   "name": "ai-model-hub",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "provide latest AI model information",
   "repository": {
     "type": "git",

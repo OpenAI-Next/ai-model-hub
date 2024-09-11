@@ -2075,7 +2075,12 @@
     "id": 11,
     "logo": {
       "icon": {
-        "color": "https://ai-model-hub.oss-cn-hangzhou.aliyuncs.com/icon/provider/bytedance/color.svg"
+        "black_white": "https://ai-model-hub.oss-cn-hangzhou.aliyuncs.com/icon/provider/byteDance/color.svg",
+        "color": "https://ai-model-hub.oss-cn-hangzhou.aliyuncs.com/icon/provider/byteDance/color.svg"
+      },
+      "brand": {
+        "black_white": "https://ai-model-hub.oss-cn-hangzhou.aliyuncs.com/icon/provider/byteDance/brands_black_white.svg",
+        "color": "https://ai-model-hub.oss-cn-hangzhou.aliyuncs.com/icon/provider/byteDance/brands_color.svg"
       }
     },
     "website": {
